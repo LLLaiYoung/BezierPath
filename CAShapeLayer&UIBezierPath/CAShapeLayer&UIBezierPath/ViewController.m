@@ -25,6 +25,7 @@
 //    [self drawRoundedCornerRadiusShape];
 //    [self drawFanshaped];
 //    [self drawRound];
+//    [self drawbyRoundingCornersWithTopRight];
 //    [self drawOval];
 //    [self drawCurve];
 //    [self drawCurve2];
@@ -86,7 +87,6 @@
     [layer addSublayer:coverLayer];
     [coverLayer addAnimation:baseAnimation forKey:nil];
     self.layer = coverLayer;
-    [self.view.layer addSublayer:layer];
 }
 //* 画饼图 */
 - (void)drawPie {
@@ -333,6 +333,15 @@
     layer.path = path.CGPath;
     layer.fillColor = [UIColor whiteColor].CGColor;
     layer.strokeColor = [UIColor blackColor].CGColor;
+    [self.view.layer addSublayer:layer];
+}
+/** 画圆角(右上) */
+- (void)drawbyRoundingCornersWithTopRight {
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:kDefaultFrame byRoundingCorners:UIRectCornerTopRight cornerRadii:kDefaultFrame.size];
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.path = path.CGPath;
+    layer.strokeColor = [UIColor blackColor].CGColor;
+    layer.fillColor = [UIColor whiteColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
 //* 画圆 */
