@@ -40,7 +40,10 @@
 /** 动画->饼图 点击屏幕 */
 /**
  *  这种动画是利用一个layer覆盖在已经画好的饼图上面,然后对覆盖的layer'strokeEnd'做动画
+ *  在自定义UIView里面使用self.bouns
+ *  画图时候需要center这个center是这个UIView的中心点,而不是它在父容器的center
  */
+
 - (void)darwPieWithAnimation {
     //* 最外层layer */
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:kDefaultFrame cornerRadius:kDefaultFrame.size.height/2];
