@@ -35,7 +35,8 @@
 //    [self drawRoundWithAnimation];
 //    [self draw];
 //    [self drawPie];
-    [self darwPieWithAnimation];
+    [self drawHollowRectangularWithAnimation];
+//    [self drawPieWithAnimation];
 }
 /** 动画->饼图 点击屏幕 */
 /**
@@ -44,7 +45,7 @@
  *  画图时候需要center这个center是这个UIView的中心点,而不是它在父容器的center
  */
 
-- (void)darwPieWithAnimation {
+- (void)drawPieWithAnimation {
     //* 最外层layer */
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:kDefaultFrame cornerRadius:kDefaultFrame.size.height/2];
     CAShapeLayer *layer = [CAShapeLayer layer];
@@ -94,7 +95,7 @@
     [coverLayer addAnimation:baseAnimation forKey:nil];
     self.layer = coverLayer;
 }
-//* 画饼图 */
+/** 画饼图 */
 - (void)drawPie {
     //* 最外层layer */
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:kDefaultFrame cornerRadius:kDefaultFrame.size.height/2];
@@ -149,7 +150,7 @@
     layer.fillColor = [UIColor blackColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
-//* 动画画圆 */
+/** 动画画圆 */
 - (void)drawRoundWithAnimation {
     CABasicAnimation *baseAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     baseAnimation.fromValue = @0.0;
@@ -165,7 +166,7 @@
     [self.view.layer addSublayer:layer];
 }
 
-//* 动画绘制曲线 线边宽 */
+/** 动画绘制曲线 线边宽 */
 - (void)drawCurveWithAnimation3 {
     CABasicAnimation *baseAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     //* strokeEnd取值范围 0-1 */
@@ -199,7 +200,7 @@
     
     [self.view.layer addSublayer:layer];
 }
-//* 动画绘制曲线 中间向两边画*/
+/** 动画绘制曲线 中间向两边画*/
 - (void)drawCurveWithAnimation2 {
     CABasicAnimation *baseAnimation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
     //* 初始状态 */
@@ -231,7 +232,7 @@
     [layer addAnimation:baseAnimation2 forKey:nil];
     [self.view.layer addSublayer:layer];
 }
-//* 动画绘制曲线 */
+/** 动画绘制曲线 */
 - (void)drawCurveWithAnimation {
     CABasicAnimation *baseAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     //* strokeEnd取值范围 0-1 */
@@ -258,7 +259,7 @@
     [layer addAnimation:baseAnimation forKey:nil];
     [self.view.layer addSublayer:layer];
 }
-//* 画曲线2 */
+/** 画曲线2 */
 - (void)drawCurve2 {
     //* 贝塞尔曲线的画法是由起点、终点、控制点三个参数来画的,控制点决定了它的曲率 */
     CGPoint starPoint = CGPointMake(50, 300);
@@ -298,7 +299,7 @@
     
 }
 
-//* 画曲线 */
+/** 画曲线 */
 - (void)drawCurve {
     //* 贝塞尔曲线的画法是由起点、终点、控制点三个参数来画的,控制点决定了它的曲率 */
     CGPoint starPoint = CGPointMake(50, 300);
@@ -331,7 +332,24 @@
     [self.view.layer addSublayer:layer];
     
 }
-//* 画椭圆 */
+/** 动画画空心矩形 */
+- (void)drawHollowRectangularWithAnimation {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    animation.fromValue = @0.0;
+    animation.toValue = @1.0;
+    animation.duration = 2.0f;
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:kDefaultFrame];
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    //* 设置路径 */
+    layer.path = path.CGPath;
+    //* 设置填充色 */
+    layer.fillColor = [UIColor whiteColor].CGColor;
+    //* 设置边框色 */
+    layer.strokeColor = [UIColor blackColor].CGColor;
+    [layer addAnimation:animation forKey:nil];
+    [self.view.layer addSublayer:layer];
+}
+/** 画椭圆 */
 - (void)drawOval {
     //* 改变kDefaultFrame的Width或者Height不然就是一个圆 */
     UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:kDefaultFrame];
@@ -350,7 +368,7 @@
     layer.fillColor = [UIColor whiteColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
-//* 画圆 */
+/** 画圆 */
 - (void)drawRound {
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:kDefaultFrame cornerRadius:kDefaultFrame.size.height/2];
     CAShapeLayer *layer = [CAShapeLayer layer];
@@ -359,7 +377,7 @@
     layer.strokeColor = [UIColor blackColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
-//* 画扇形形 */
+/** 画扇形形 */
 - (void)drawFanshaped {
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:self.view.center radius:50 startAngle:0 endAngle:M_PI/2 clockwise:YES];
     CGPoint centerPoint = self.view.center;
@@ -372,7 +390,7 @@
     layer.strokeColor = [UIColor blackColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
-//* 画圆角图形 */
+/** 画圆角图形 */
 - (void)drawRoundedCornerRadiusShape {
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:kDefaultFrame cornerRadius:30];
     CAShapeLayer *layer = [CAShapeLayer layer];
@@ -381,7 +399,7 @@
     layer.strokeColor = [UIColor blackColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
-//* 画空心矩形 */
+/** 画空心矩形 */
 - (void)drawHollowRectangular {
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:kDefaultFrame];
     CAShapeLayer *layer = [CAShapeLayer layer];
@@ -393,7 +411,7 @@
     layer.strokeColor = [UIColor blackColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
-//* 画实心矩形 */
+/** 画实心矩形 */
 - (void)drawSolidRectangular {
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.frame = kDefaultFrame;
