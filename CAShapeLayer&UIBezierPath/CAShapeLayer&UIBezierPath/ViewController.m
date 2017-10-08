@@ -35,8 +35,8 @@
 //    [self drawRoundWithAnimation];
 //    [self draw];
 //    [self drawPie];
-    [self drawHollowRectangularWithAnimation];
-//    [self drawPieWithAnimation];
+//    [self drawHollowRectangularWithAnimation];
+    [self drawPieWithAnimation];
 }
 /** 动画->饼图 点击屏幕 */
 /**
@@ -352,11 +352,11 @@
 /** 画椭圆 */
 - (void)drawOval {
     //* 改变kDefaultFrame的Width或者Height不然就是一个圆 */
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:kDefaultFrame];
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(100, 100, 200, 100)];
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.path = path.CGPath;
     layer.fillColor = [UIColor whiteColor].CGColor;
-    layer.strokeColor = [UIColor blackColor].CGColor;
+    layer.strokeColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
 /** 画圆角(右上) */
@@ -364,7 +364,7 @@
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:kDefaultFrame byRoundingCorners:UIRectCornerTopRight cornerRadii:kDefaultFrame.size];
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.path = path.CGPath;
-    layer.strokeColor = [UIColor blackColor].CGColor;
+    layer.strokeColor = [UIColor redColor].CGColor;
     layer.fillColor = [UIColor whiteColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
@@ -374,7 +374,7 @@
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.path = path.CGPath;
     layer.fillColor = [UIColor whiteColor].CGColor;
-    layer.strokeColor = [UIColor blackColor].CGColor;
+    layer.strokeColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
 /** 画扇形形 */
@@ -387,7 +387,7 @@
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.path = path.CGPath;
     layer.fillColor = [UIColor whiteColor].CGColor;
-    layer.strokeColor = [UIColor blackColor].CGColor;
+    layer.strokeColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
 /** 画圆角图形 */
@@ -408,7 +408,7 @@
     //* 设置填充色 */
     layer.fillColor = [UIColor whiteColor].CGColor;
     //* 设置边框色 */
-    layer.strokeColor = [UIColor blackColor].CGColor;
+    layer.strokeColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
 /** 画实心矩形 */
@@ -416,7 +416,7 @@
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.frame = kDefaultFrame;
     //* 设置layer背景颜色 */
-    layer.backgroundColor = [UIColor blackColor].CGColor;
+    layer.backgroundColor = [UIColor redColor].CGColor;
     [self.view.layer addSublayer:layer];
 }
 
@@ -436,7 +436,6 @@
     baseAnimation.removedOnCompletion = NO;//执行完成后动画对象不要移除
     baseAnimation.fillMode = kCAFillModeForwards;//保持当前状态
     [self.layer addAnimation:baseAnimation forKey:nil];
-
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
